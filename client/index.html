@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="google-signin-client_id" content="402397613072-fpijagmlm7mcln8k60h5vnoll5r24ouh.apps.googleusercontent.com">
+    <title>TodEasy</title>
+  </head>
+  <body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">TodEasy</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="registerForm()" href="#">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="signIn()" href="#">Sign in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="signOut()" href="#">Sign Out</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="home" id="home" style="text-align:center;">
+      <h1 style="margin-top:100px;font-size:100px;">TodEasy</h1>
+      <h1>Modern to do list aplication</h1><br>
+      <h1>to make your life easier</h1>
+    </div>
+
+    <!-- form -->
+    <div class="container" id="form">
+      <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-5" style="margin-top:50px;margin-bottom:50px;">
+          <!-- register form -->
+          <div class="registerForm">
+            <h1 style="text-align:center;">Create Your TodEasy Account Now !!! </h1>
+            <br>
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Name</label>
+                  <input type="text" class="form-control" id="inputName" aria-describedby="emailHelp" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+              </fieldset>
+              <input type="button" value="Submit" onclick="register()" class="btn btn-primary"></input>
+            </form>
+            <br>
+            <h5 style="text-align:center;">Already have an Account ? <a href="#" onclick="signIn()">Login here</a></h5>
+            <br>
+            <h5 style="text-align:center;">Or signin With Google</h5><br>
+            <center>
+              <div class="g-signin2" data-onsuccess="onSignIn" style="width:365px;"></div>
+            </center>
+          </div>
+
+          <!-- login form -->
+          <div class="loginForm">
+            <h1 style="text-align:center;">Login to Your Account </h1>
+            <br>
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="inputEmailLogin" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="inputPasswordLogin" placeholder="Password">
+                </div>
+              </fieldset>
+              <input type="button" value="Submit" onclick="signin()" class="btn btn-primary"></input>
+            </form>
+            <br>
+            <h5 style="text-align:center;">Don't have an Account ? <a href="#" onclick="registerForm()">Create here</a></h5>
+            <br>
+            <h5 style="text-align:center;">Or signin With Google</h5><br>
+            <center>
+              <div class="g-signin2" data-onsuccess="onSignIn" style="width:365px;"></div>
+            </center>
+          </div>
+
+        </div>
+        <div class="col">
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- content -->
+    <div class="container" id="content">
+      <div class="row">
+        <div class="col">
+
+          <div class="projectList">
+
+          </div>
+
+        </div>
+        <div class="col-5" style="margin-top:50px;margin-bottom:50px;">
+
+          <div class="personalTodo">
+            <form>
+              <fieldset>
+                <div class="form-group">
+                  <label for="exampleInputText">Todo title</label>
+                  <input type="text" class="form-control" id="InputNameTodoPersonal" placeholder="Enter Todo Title">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputDate">Due date</label>
+                  <input type="date" class="form-control" id="InputDateTodoPersonal">
+                </div>
+                <div class="form-group">
+                  <label for="exampleTextarea">Description</label>
+                  <textarea class="form-control" id="InputDescriptionTodoPersonal" rows="3"></textarea>
+                </div>
+                </fieldset>
+                <input type="button" value="Submit" onclick="createTodo()" class="btn btn-primary"></input>
+              </fieldset>
+            </form>
+            <br>
+            <h1>Uncomplete Todo</h1>
+            <div class="personalTodoUncomplete">
+
+            </div>
+
+            <br>
+            <h1>Completed Todo</h1>
+            <div class="personalTodoComplete">
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col">
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script type="text/javascript" src="scripts/main.js"></script>
+  </body>
+</html>
