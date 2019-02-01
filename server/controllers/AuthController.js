@@ -35,7 +35,7 @@ class AuthController {
         let token = jwt.sign(payload, process.env.JWT_SECRET);
         res.status(200).json({
           token: token,
-          payload: payload
+          id: payload._id
         })
       }
     })

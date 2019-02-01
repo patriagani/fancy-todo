@@ -6,12 +6,21 @@ $("#content").hide()
 
 function registerForm() {
   $(".loginForm").hide()
+  $("#home").hide()
   $(".registerForm").show()
 }
 
 function signIn() {
   $(".registerForm").hide()
   $(".loginForm").show()
+  $("#home").hide()
+}
+
+function toHome() {
+  $("#content").hide()
+  $(".registerForm").hide()
+  $(".loginForm").hide()
+  $("#home").show()
 }
 
 
@@ -29,6 +38,9 @@ function onSignIn(googleUser) {
   .then(function(response) {
     localStorage.setItem("token", response.data.token)
     localStorage.setItem("id", response.data.id)
+    $("#form").hide()
+    $("#home").hide()
+    loadTodos()
   })
   .catch(function(error) {
     console.log(error.message);
@@ -103,7 +115,7 @@ function loadTodos() {
                 <div class="card-header">${todo.status}</div>
                 <div class="card-body">
                 <h4 class="card-title">${todo.name}</h4>
-                <p class="card-text">${todo.due_date}</p></br>
+                <p class="card-text">${new Date(todo.due_date).toString()}</p></br>
                 <p class="card-text">${todo.description}</p><br>
                 <input type="button" class="btn btn-success" onclick="completeTodo('${todo._id}')" value="Complete"></input>
                 <input type="button" class="btn btn-danger" onclick="deleteTodo('${todo._id}')" value="Delete"></input
